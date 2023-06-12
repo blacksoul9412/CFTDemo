@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'AMI-Delete'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "AMI-Delete",
+        "EventBusName": "default",
+        "Name": "AMI-Delete",
+        "ScheduleExpression": "cron(30 17 * * ? *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "2b071e11-805f-499a-99f0-1b93082ae719",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:AMI-Delete"
+        }]
+      }
+    }
+  }
+}

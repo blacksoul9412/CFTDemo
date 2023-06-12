@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'AMI-Bacup-Rule'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "AMI-Bacup-Rule",
+        "EventBusName": "default",
+        "Name": "AMI-Bacup-Rule",
+        "ScheduleExpression": "cron(30 16 * * ? *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "Id1933336996374",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:AMIBackup"
+        }]
+      }
+    }
+  }
+}

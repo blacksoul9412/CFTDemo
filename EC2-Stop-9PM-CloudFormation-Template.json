@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'EC2-Stop-9PM'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "EC2 instances stops at everyday 9 PM IST",
+        "EventBusName": "default",
+        "Name": "EC2-Stop-9PM",
+        "ScheduleExpression": "cron(30 15 * * ? *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "Id8410038170857",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:EC2-Stop-9PM"
+        }]
+      }
+    }
+  }
+}

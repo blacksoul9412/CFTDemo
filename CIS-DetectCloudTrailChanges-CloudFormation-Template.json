@@ -1,0 +1,26 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'CIS-DetectCloudTrailChanges'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Publishes formatted CloudTrail change events to an SNS topic",
+        "EventBusName": "default",
+        "EventPattern": {
+          "detail-type": ["AWS API Call via CloudTrail"],
+          "detail": {
+            "eventSource": ["cloudtrail.amazonaws.com"],
+            "eventName": ["StopLogging", "DeleteTrail", "UpdateTrail"]
+          }
+        },
+        "Name": "CIS-DetectCloudTrailChanges",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "TargetFunctionV1",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:CIS-FormatCloudWatchEvent"
+        }]
+      }
+    }
+  }
+}

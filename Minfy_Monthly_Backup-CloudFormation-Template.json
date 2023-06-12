@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'Minfy_Monthly_Backup'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Minfy_AMI_Monthly 1st of every month, 12PM(Tag:Backupmn=yes)",
+        "EventBusName": "default",
+        "Name": "Minfy_Monthly_Backup",
+        "ScheduleExpression": "cron(30 6 1 * ? *)",
+        "State": "DISABLED",
+        "Targets": [{
+          "Id": "Id7525942487335",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:Minfy_Monthly_Backup"
+        }]
+      }
+    }
+  }
+}

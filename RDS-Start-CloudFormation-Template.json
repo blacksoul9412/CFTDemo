@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'RDS-Start'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Starts at 10.00 PM",
+        "EventBusName": "default",
+        "Name": "RDS-Start",
+        "ScheduleExpression": "cron(30 16 ? * SUN *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "Id827596174133",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:ManageRDSInstances",
+          "Input": "{ \"instances\": [\"i3-app-uat-mysql-db\"], \"action\":\"start\" }"
+        }]
+      }
+    }
+  }
+}

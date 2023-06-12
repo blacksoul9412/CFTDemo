@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'RDS-BACKUP'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "RDS-BACKUP",
+        "EventBusName": "default",
+        "Name": "RDS-BACKUP",
+        "ScheduleExpression": "cron(30 19 ? * * *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "e563d9fd-8959-40e6-b181-9f8d8bf7c036",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:RDS-BACKUP"
+        }]
+      }
+    }
+  }
+}

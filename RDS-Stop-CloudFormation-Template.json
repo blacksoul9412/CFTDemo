@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'RDS-Stop'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Stops at 10.55 PM",
+        "EventBusName": "default",
+        "Name": "RDS-Stop",
+        "ScheduleExpression": "cron(45 16 ? * SUN *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "Id8543299559598",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:ManageRDSInstances",
+          "Input": "{ \"instances\": [\"i3-app-uat-mysql-db\"], \"action\":\"stop\" }\t\t"
+        }]
+      }
+    }
+  }
+}

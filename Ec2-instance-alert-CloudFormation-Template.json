@@ -1,0 +1,33 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'Ec2-instance-alert'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Alerts for Instance state changes",
+        "EventBusName": "default",
+        "EventPattern": {
+          "source": ["aws.ec2"],
+          "detail-type": ["EC2 Instance State-change Notification"]
+        },
+        "Name": "Ec2-instance-alert",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "Id13541550200213",
+          "Arn": "arn:aws:sns:ap-south-1:437097720063:CHOLAMS-Ec2-Instance-Alert",
+          "InputTransformer": {
+            "InputPathsMap": {
+              "account": "$.account",
+              "instance-id": "$.detail.instance-id",
+              "region": "$.region",
+              "state": "$.detail.state",
+              "time": "$.time"
+            },
+            "InputTemplate": "\"At <time>, the status of your EC2 instance <instance-id> on CHOLAMS Account <account> in the AWS Region <region> has changed to <state>.\""
+          }
+        }]
+      }
+    }
+  }
+}

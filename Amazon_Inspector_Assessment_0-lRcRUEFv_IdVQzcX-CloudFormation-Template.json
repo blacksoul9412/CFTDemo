@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'Amazon_Inspector_Assessment_0-lRcRUEFv_IdVQzcX'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Scheduled Inspector Assessment for arn:aws:inspector:ap-south-1:437097720063:target/0-mq7HXxzY/template/0-lRcRUEFvrunning every 7 day(s)",
+        "EventBusName": "default",
+        "Name": "Amazon_Inspector_Assessment_0-lRcRUEFv_IdVQzcX",
+        "ScheduleExpression": "rate(7 days)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "IdVQzcX",
+          "Arn": "arn:aws:inspector:ap-south-1:437097720063:target/0-mq7HXxzY/template/0-lRcRUEFv",
+          "RoleArn": "arn:aws:iam::437097720063:role/AWS_InspectorEvents_Invoke_Assessment_Template"
+        }]
+      }
+    }
+  }
+}

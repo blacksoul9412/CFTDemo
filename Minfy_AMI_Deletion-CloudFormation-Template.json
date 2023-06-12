@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'Minfy_AMI_Deletion'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Deletion of AMI at 11:00 PM daily with 7 days Retention Period.",
+        "EventBusName": "default",
+        "Name": "Minfy_AMI_Deletion",
+        "ScheduleExpression": "cron(30 17 ? * * *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "Id6964038676253",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:Minfy_AMI_Deletion"
+        }]
+      }
+    }
+  }
+}

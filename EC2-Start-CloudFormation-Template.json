@@ -1,0 +1,20 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'EC2-Start'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "The instance will start at 8 AM Mon-Fri",
+        "EventBusName": "default",
+        "Name": "EC2-Start",
+        "ScheduleExpression": "cron(30 02 ? * MON-FRI *)",
+        "State": "DISABLED",
+        "Targets": [{
+          "Id": "b3694dc8-abc8-4705-b786-687995106a5f",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:EC2-start"
+        }]
+      }
+    }
+  }
+}

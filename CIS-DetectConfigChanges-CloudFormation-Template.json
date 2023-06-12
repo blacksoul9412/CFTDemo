@@ -1,0 +1,26 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'CIS-DetectConfigChanges'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "Description": "Publishes formatted Config change events to an SNS topic",
+        "EventBusName": "default",
+        "EventPattern": {
+          "detail-type": ["AWS API Call via CloudTrail"],
+          "detail": {
+            "eventSource": ["config.amazonaws.com"],
+            "eventName": ["PutConfigurationRecorder", "StopConfigurationRecorder", "DeleteDeliveryChannel", "PutDeliveryChannel"]
+          }
+        },
+        "Name": "CIS-DetectConfigChanges",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "TargetFunctionV1",
+          "Arn": "arn:aws:lambda:ap-south-1:437097720063:function:CIS-FormatCloudWatchEvent"
+        }]
+      }
+    }
+  }
+}

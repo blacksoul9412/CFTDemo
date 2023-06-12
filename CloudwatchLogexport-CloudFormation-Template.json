@@ -1,0 +1,21 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template for EventBridge rule 'CloudwatchLogexport'",
+  "Resources": {
+    "EventRule0": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "EventBusName": "default",
+        "Name": "CloudwatchLogexport",
+        "ScheduleExpression": "cron(0 10 * * ? *)",
+        "State": "ENABLED",
+        "Targets": [{
+          "Id": "Id7334907568335",
+          "Arn": "arn:aws:states:ap-south-1:437097720063:stateMachine:Cloudwatchlogexport",
+          "RoleArn": "arn:aws:iam::437097720063:role/service-role/AWS_Events_Invoke_Step_Functions_1228590170",
+          "Input": "{     \"region\":\"ap-south-1\",     \"logGroupFilter\":\"/var/log/messages\",     \"s3BucketName\":\"chola-cloudwatch-logs\",     \"logFolderName\":\"ec2-messagelogs\" }"
+        }]
+      }
+    }
+  }
+}
